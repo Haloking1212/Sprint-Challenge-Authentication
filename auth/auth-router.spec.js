@@ -10,8 +10,10 @@ describe('server.js', () => {
 
     describe('POST /api/auth/register', () => {
         it('should return 500', async () => {
-            const res = await request(server).post('/api/auth/register');
-            expect(res.status).toBe(500)
+            return request(server).post('/api/auth/register').send({username: Date.now() , password: "password"})
+            .then( (res) => {
+                expect(res.status).toBe(201)
+            })
         })
     })
 
@@ -35,4 +37,14 @@ describe('server.js', () => {
             expect(res.status).toBe(401)
         })
     })
+
+    describe('POST /api/auth/login', () => {
+        it('should return 200 ok', async () => {
+            return await request(server).post('/api/auth/login').send({ username: "hector", password: "password" })
+            .set({ username: "hector", password: "password" })
+            .then( res => {
+                expect(res.status).toBe(200)
+            })
+        })
+    });
 });
