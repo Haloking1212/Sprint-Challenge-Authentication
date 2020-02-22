@@ -16,7 +16,7 @@ describe('server.js', () => {
     })
 
     describe('POST /api/auth/register', () => {
-        it('should return an object {}', async () => {
+        it('should return an object', async () => {
             const res = await request(server).post('/api/auth/register');
             expect(res.body).toEqual({})
         })
