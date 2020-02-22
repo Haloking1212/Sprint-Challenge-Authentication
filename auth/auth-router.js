@@ -28,7 +28,7 @@ router.post('/login', authorize, (req, res) => {
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
         req.session.loggedin = true;
-        res.status(200).json({ message: `Welcome ${user.username}! have a... biscuit.`, });
+        res.status(200).json({ message: `Welcome! have a... biscuit.`, });
       } else {
         res.status(401).json({ message: 'Nice try. But, no. Try again.' });
       }
