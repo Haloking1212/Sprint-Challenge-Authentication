@@ -26,8 +26,11 @@ describe('server.js', () => {
 
     describe('POST /api/auth/login', () => {
         it('should return you shall not pass', async () => {
-            const res = await request(server).post('/api/auth/login');
-            expect(res.body).toEqual({ message: "You Shall Not Pass!" })
+            return await request(server).post('/api/auth/login').send({ username: "hector", password: "password"})
+            .set({ username: "hector", password: "password" })
+            .then( res => {
+                expect(res.body).toEqual({ message: "Welcome! have a... biscuit." })
+            })     
         })
     })
 
